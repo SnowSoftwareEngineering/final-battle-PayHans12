@@ -16,9 +16,8 @@ namespace RPG_Battler.Character
         public int ExperienceRemaining { get; set; }
         public CombatClass CombatClass { get; set; }
         public List<Item> Items { get; set; }
-        public List<Skill> Skills { get; set; }
-        public List<Spell> Spells { get; set; }
         public List<Equipment> Equipment { get; set; }
+        Random num = new Random();
 
         public Hero()
         {
@@ -31,32 +30,52 @@ namespace RPG_Battler.Character
 
         public void LevelUp(CombatClass character)
         {
-            Random num = new Random();
+            
             switch (character)
             {
                 case CombatClass.Wizard:
                     Health += num.Next(1, 16);
                     Power += num.Next(3, 6);
                     Luck += num.Next(1, 4);
+                    Level += 1;
                     break;
                 case CombatClass.Warrior:
                     Health += num.Next(10, 21);
                     Power += num.Next(1, 4);
                     Luck += num.Next(1, 4);
+                    Level += 1;
                     break;
                 case CombatClass.Rogue:
                     Health += num.Next(1, 16);
                     Power += num.Next(1, 4);
                     Luck += num.Next(3, 6);
+                    Level += 1;
                     break;
                 default:
                     break;
             }
         }
 
-        public void DisplayStats(bool whatStats)
+        public void DisplayStats(bool showTotalStats = false)
         {
 
+        }
+
+        public void PowerLevel(int levelUp)
+        {
+            if(levelUp > 50)
+            {
+                LevelUp(CombatClass);
+            }
+        }
+
+        public void AwakenHero()
+        {
+            CombatClass = (CombatClass)num.Next(0,4);
+            while(Level < num.Next(8, 13))
+            {
+                LevelUp(CombatClass);
+            }
         }
 
 
