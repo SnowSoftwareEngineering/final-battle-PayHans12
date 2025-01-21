@@ -26,6 +26,7 @@ namespace RPG_Battler.Character
             Power = 1;
             Health = 1;
             Mana = 1;
+            Level = 0;
         }
 
         public void LevelUp(CombatClass character)
