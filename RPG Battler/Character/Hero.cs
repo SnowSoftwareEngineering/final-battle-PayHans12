@@ -21,12 +21,43 @@ namespace RPG_Battler.Character
         public List<Equipment> Equipment { get; set; }
 
         public Hero()
-        {       
+        {
+            Name = "Unknown";
+            Power = 1;
+            Health = 1;
+            Mana = 1;
         }
 
-        public void LevelUp()
+        public void LevelUp(CombatClass character)
         {
+            Random num = new Random();
+            switch (character)
+            {
+                case CombatClass.Wizard:
+                    Health += num.Next(1, 16);
+                    Power += num.Next(3, 6);
+                    Luck += num.Next(1, 4);
+                    break;
+                case CombatClass.Warrior:
+                    Health += num.Next(10, 21);
+                    Power += num.Next(1, 4);
+                    Luck += num.Next(1, 4);
+                    break;
+                case CombatClass.Rogue:
+                    Health += num.Next(1, 16);
+                    Power += num.Next(1, 4);
+                    Luck += num.Next(3, 6);
+                    break;
+                default:
+                    break;
+            }
         }
+
+        public void DisplayStats(bool whatStats)
+        {
+
+        }
+
 
         public void CalculateTotals()
         {
