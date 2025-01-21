@@ -16,11 +16,10 @@ namespace RPG_Battler.Character
         public int Power { get; set; }
         public int Luck { get; set; }
         Random num = new Random();
-        double rarity;
 
         public Monster()
         {
-            rarity = 100 * num.NextDouble();
+            double rarity = 100 * num.NextDouble();
             if (rarity < 60)
             {
                 CreatureRarity = CreatureRarity.Common;
@@ -37,6 +36,12 @@ namespace RPG_Battler.Character
             {
                 CreatureRarity = CreatureRarity.Legendary;
             }
+
+            while (Level < num.Next(5, 15))
+            {
+                LevelUp(CreatureRarity);
+            }
+            Name = "UnknownBeast";
         }
         public void LevelUp(CreatureRarity CreatureRarity)
         {
